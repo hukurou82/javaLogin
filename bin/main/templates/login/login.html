@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwwthymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+      th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+        th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+<title>Login</title>
+</head>
+<body class="text-center">
+	<h1>Login</h1>
+	<form method="post" action="/login">
+		<!-- ポイント：ログインエラーメッセージの表示 -->
+		<!-- エラーメッセージ -->
+		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']}!=null"
+		th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+		class = "text-danger">
+		ログインエラーメッセージ
+		</p>
+		<!-- ユーザーID -->
+		<label>ユーザーID</label>
+		<input type="text" name="userId" /><br />
+		<br />
+
+		<!-- パスワード -->
+		<label>パスワード</label>
+		<input type="password" name="password"/><br />
+		<br />
+
+		<!-- ログインボタン -->
+		<button class="btn btn-primary" type="submit">ログイン</button>
+	</form>
+	<br />
+
+	<!-- ポイント2：th:href -->
+	<!-- ユーザー画面登録へのリンク -->
+	<a th:href="@{'/signup'}">ユーザー新規登録はこちら</a>
+</body>
+</html>
